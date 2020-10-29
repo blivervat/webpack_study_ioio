@@ -1,0 +1,91 @@
+.idea/*
+
+*.phpproj
+*.sln
+*.suo
+*.user
+*.swp
+/nbproject/private/
+*.phpproj
+*.sln
+/nbproject/
+.history
+
+#yii
+!assets/.gitignore
+protected/runtime/*
+!protected/runtime/.gitignore
+protected/tests/runtime/*
+!protected/tests/runtime/.gitignore
+
+#webgrind
+web/webgrind/
+
+.DS_Store
+
+# phpstorm project files
+.idea
+.idea/
+
+# netbeans project files
+nbproject
+
+# zend studio for eclipse project files
+.buildpath
+.project
+.settings
+.idea
+/.idea
+# windows thumbnail cache
+Thumbs.db
+
+# composer vendor dir
+tags
+
+# composer itself is not needed
+composer.phar
+
+# Mac DS_Store Files
+.DS_Store
+
+*.suo
+*.phpproj.user
+
+#ignore symbol link
+framework/
+framework
+
+zjSDK/
+zjSDK
+
+frontend/
+frontend
+
+/.tags
+
+/.tags_sorted_by_file
+
+# Vagrant files
+.vagrant
+
+/web/mobiend
+
+node_modules/
+node_modules
+.sass-cache
+gulpfile.js
+
+protected/sdk
+protected/zjSDK
+protected/framework/*
+/protected/modules/report
+/web/dist/
+dev-server.js
+
+
+# vscode忽略
+.vscode
+.history
+/web/assets/*
+
+/.idea/
