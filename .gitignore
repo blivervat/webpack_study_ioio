@@ -79,10 +79,11 @@ protected/sdk
 protected/zjSDK
 protected/framework/*
 /protected/modules/report
-/web/dist/
 dev-server.js
 
 
+dist
+dist/
 # vscode忽略
 .vscode
 .history

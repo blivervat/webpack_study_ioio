@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development webpack",
-    "build": "NODE_ENV=production webpack",
+    "dev": "dotenv -e .env webpack-dev-server",
+    "build": "dotenv -e .env.prod webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -14,8 +14,17 @@
     "@babel/core": "^7.12.3",
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
+    "autoprefixer": "^9.8.6",
     "babel-loader": "^8.1.0",
+    "css-loader": "^5.0.0",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.0",
+    "less": "^3.12.2",
+    "less-loader": "^7.0.2",
+    "postcss": "^8.1.4",
+    "postcss-loader": "^4.0.4",
+    "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.11.0"

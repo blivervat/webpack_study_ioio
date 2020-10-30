@@ -1,12 +1,19 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const isDev = process.env.NODE_ENV === 'development';
+console.log(process.env.NODE_ENV);
 module.exports = {
-    mode: isDev ? 'development' : 'production',
+    mode: process.env.NODE_ENV,
+    devtool: process.env.SOURCE_MAP,
     entry: './main.js', // 入口文件
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'my-first-webpack.bundle.js' // 出口文件
+    },
+    resolve: {
+        alias: {
+            "@src": path.resolve(__dirname, 'src/'),
+            "@assets": path.resolve(__dirname, 'src/assets/')
+        },
     },
     // 使用loader处理非js文件, 让webpack可以处理这些文件
     module: {
@@ -19,6 +26,39 @@ module.exports = {
                 test: /\.jsx?$/,
                 use: ['babel-loader'],
                 exclude: /node_modules/ //排除 node_modules 目录
+            },
+            {
+                test: /\.(le|c)ss$/,
+                use: ['style-loader', 'css-loader', {
+                    loader: 'postcss-loader',
+                    // options: {
+                    //     plugins: function() {
+                    //         return [
+                    //             require('autoprefixer')({
+                    //                 "overrideBrowserslist": [
+                    //                     ">0.25%",
+                    //                     "not dead"
+                    //                 ]
+                    //             })
+                    //         ]
+                    //     }
+                    // }
+                }, 'less-loader'],
+                exclude: /node_modules/
+            },
+            {
+                test: /\.(png|jpg|gif|jpeg|webp|svg|eot|ttf|woff|woff2)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 10240, //10K
+                            esModule: false,
+                            outputPath: 'img/'
+                        }
+                    }
+                ],
+                exclude: /node_modules/
             }
         ]
     },
