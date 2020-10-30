@@ -2,10 +2,19 @@
 body{
     transition: all 2s;
     background-image: url("@assets/img/girl.jpg");
+    .logo {
+        width: 268px;
+        background: #fff;
+    }
     .box {
         width: 200px;
         height: 200px;
         background-color: aqua;
         box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        transition: all .5s;
+        border-radius: 50%;
+        &:hover {
+            background-color: salmon;
+        }
     }
 }

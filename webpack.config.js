@@ -27,6 +27,12 @@ module.exports = {
                 use: ['babel-loader'],
                 exclude: /node_modules/ //排除 node_modules 目录
             },
+            /*
+             * style-loader 动态创建 style 标签，将 css 插入到 head 中.
+             * css-loader 负责处理 @import 等语句。
+             * postcss-loader 和 autoprefixer，自动生成浏览器兼容性前缀 —— 2020了，应该没人去自己徒手去写浏览器前缀了吧
+             * less-loader 负责处理编译 .less 文件,将其转为 css
+            */
             {
                 test: /\.(le|c)ss$/,
                 use: ['style-loader', 'css-loader', {
@@ -54,11 +60,17 @@ module.exports = {
                         options: {
                             limit: 10240, //10K
                             esModule: false,
-                            outputPath: 'img/'
+                            name: '[name]_[hash:8].[ext]',
+                            outputPath: 'img/' // 图片输出文件夹
                         }
                     }
                 ],
                 exclude: /node_modules/
+            },
+            // 处理html里面的src地址
+            {
+                test: /.html$/,
+                use: 'html-withimg-loader'
             }
         ]
     },
