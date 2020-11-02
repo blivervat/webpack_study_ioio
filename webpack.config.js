@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssPlugin = require('optimize-css-assets-webpack-plugin');
-console.log(process.env.NODE_ENV);
+const isDev = process.env.VUE_APP_MODE === 'development';
 module.exports = {
     mode: process.env.NODE_ENV,
     devtool: process.env.SOURCE_MAP,
@@ -38,7 +38,14 @@ module.exports = {
             */
             {
                 test: /\.(le|c)ss$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader', {
+                use: [isDev ? 'style-loader' : {
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        publicPath: '../'
+                    }
+                },
+                    'css-loader',
+                {
                     loader: 'postcss-loader',
                     // options: {
                     //     plugins: function() {
@@ -82,7 +89,7 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: 'css/[name].css' //个人习惯将css文件放在单独目录下
+            filename: isDev ? 'css/[name].css' : 'css/[name].[hash].css' //个人习惯将css文件放在单独目录下
         }),
         new OptimizeCssPlugin(),
         new HtmlWebpackPlugin({
@@ -96,7 +103,7 @@ module.exports = {
         })
     ],
     devServer: {
-        port: '8080', //默认是8080
+        port: '7777', //默认是8080
         quiet: false, //默认不启用
         inline: true, //默认开启 inline 模式，如果设置为false,开启 iframe 模式
         stats: "errors-only", //终端仅打印 error
