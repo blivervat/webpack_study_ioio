@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssPlugin = require('optimize-css-assets-webpack-plugin');
 console.log(process.env.NODE_ENV);
 module.exports = {
     mode: process.env.NODE_ENV,
@@ -83,6 +84,7 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: 'css/[name].css' //个人习惯将css文件放在单独目录下
         }),
+        new OptimizeCssPlugin(),
         new HtmlWebpackPlugin({
             template: './public/index.html',
             filename: 'index.html', //打包后的文件名
