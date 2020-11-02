@@ -1,5 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 console.log(process.env.NODE_ENV);
 module.exports = {
     mode: process.env.NODE_ENV,
@@ -35,7 +37,7 @@ module.exports = {
             */
             {
                 test: /\.(le|c)ss$/,
-                use: ['style-loader', 'css-loader', {
+                use: [MiniCssExtractPlugin.loader, 'css-loader', {
                     loader: 'postcss-loader',
                     // options: {
                     //     plugins: function() {
@@ -77,6 +79,10 @@ module.exports = {
     // plugins用于执行范围更广的任务,从打包优化和压缩，一直到重新定义环境中的变量
     // 插件目的在于解决 loader 无法实现的其他事。
     plugins: [
+        new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].css' //个人习惯将css文件放在单独目录下
+        }),
         new HtmlWebpackPlugin({
             template: './public/index.html',
             filename: 'index.html', //打包后的文件名
